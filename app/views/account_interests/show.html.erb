@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Interest:</strong>
+  <%= @account_interest.interest %>
+</p>
+
+<p>
+  <strong>Account name:</strong>
+  <%= @account_interest.account_name %>
+</p>
+
+<%= link_to 'Edit', edit_account_interest_path(@account_interest) %> |
+<%= link_to 'Back', account_interests_path %>
