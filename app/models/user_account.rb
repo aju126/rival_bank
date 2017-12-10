@@ -8,12 +8,12 @@ class UserAccount < ActiveRecord::Base
   #Associations
 
   belongs_to :user_information
+  accepts_nested_attributes_for :user_information
   belongs_to :account_balance
   belongs_to :account_interest
-  has_many :transactions
+  has_many :source_accounts, class_name: 'Transaction', foreign_key: 'source_user_account_id'
+  has_many :destination_accounts, class_name: 'Transaction', foreign_key: 'destination_user_account_id'
   has_and_belongs_to_many :roles, join_table: 'users_roles'
-
-  #attr_accessor :user_name
 
   def email_required?
     false
@@ -21,6 +21,15 @@ class UserAccount < ActiveRecord::Base
 
   def email_changed?
     false
+  end
+
+  def balance
+    self.account_balance.balance.try(:to_i).presence || 0
+  end
+
+  def update_balance(amount)
+    self.account_balance.balance = self.balance + amount
+    save
   end
 
   def find_for_database_authentication warden_conditions

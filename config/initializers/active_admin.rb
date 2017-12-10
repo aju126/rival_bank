@@ -104,7 +104,7 @@ ActiveAdmin.setup do |config|
   # link. For example :get, :delete, :put, etc..
   #
   # Default:
-  # config.logout_link_method = :get
+  config.logout_link_method = :delete
 
   # == Root
   #
@@ -207,6 +207,19 @@ ActiveAdmin.setup do |config|
   # You can add a navigation menu to be used in your application, or configure a provided menu
   #
   # To change the default utility navigation to show a link to your website & a logout btn
+
+  config.namespace :admin do |admin|
+    admin.build_menu do |menu|
+      menu.add label: 'Operations', priority: 5
+    end
+
+    admin.build_menu :utility_navigation do |menu|
+      menu.add id: 'current_user',
+               label: -> { display_name current_active_admin_user },
+               url:   -> { auto_url_for(current_active_admin_user) if current_active_admin_user.id }
+      admin.add_logout_button_to_menu menu
+    end
+  end
   #
   #   config.namespace :admin do |admin|
   #     admin.build_menu :utility_navigation do |menu|
@@ -267,6 +280,7 @@ ActiveAdmin.setup do |config|
   # that every record will be loaded for each association.
   # You can enabled or disable the inclusion
   # of those filters by default here.
+  config.display_name_methods = [:user_name]
   #
   # config.include_default_association_filters = true
 end

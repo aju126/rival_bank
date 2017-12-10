@@ -26,5 +26,12 @@ end
                          address: 'bangalore',
                          email: 'aju.126@gmail.com'
   )
+  balance = AccountBalance.create(balance: 4500)
 
-  UserAccount.create!(user_name: 'aj', password: '123456', user_information: ui, roles: [role_admin])
+  UserAccount.create!(account_number: '123456',
+                      user_name: 'aj',
+                      password: '123456',
+                      user_information: ui,
+                      roles: [role_admin],
+                      account_balance: balance
+  )

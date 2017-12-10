@@ -2,6 +2,6 @@ class Document < ActiveRecord::Base
 
   # Associations
 
-  has_many :user_document
-  has_many :user_information, through: :user_document
+  has_many :user_documents
+  has_many :user_informations, through: :user_documents
 end

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :user_accounts
   root to: redirect('/admin/user_accounts')
+  post 'admin/transfer_balance', to: 'admin/transfer_balance#transfer'
   # resources :roles
   # resources :transactions
   # resources :account_balances

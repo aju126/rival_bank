@@ -78,11 +78,16 @@ ActiveRecord::Schema.define(version: 20171209104234) do
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.integer  "user_account_id", limit: 4
-    t.integer  "action_id",       limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "source_user_account_id_id",      limit: 4
+    t.integer  "destination_user_account_id_id", limit: 4
+    t.integer  "action_id",                      limit: 4
+    t.decimal  "amount",                                   precision: 10
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
   end
+
+  add_index "transactions", ["destination_user_account_id_id"], name: "index_transactions_on_destination_user_account_id_id", using: :btree
+  add_index "transactions", ["source_user_account_id_id"], name: "index_transactions_on_source_user_account_id_id", using: :btree
 
   create_table "user_accounts", force: :cascade do |t|
     t.integer  "account_number",         limit: 4

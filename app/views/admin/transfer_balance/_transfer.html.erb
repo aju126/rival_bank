@@ -1,0 +1,20 @@
+<%= form_tag admin_transfer_balance_path, {method: :post} do %>
+    <div class="field">
+      <%= label_tag :account_number %><br />
+      <%= text_field_tag :source_user_account_name, current_user_account.account_number, disabled: true %>
+    </div>
+
+    <div class="field">
+      <%= label_tag :destination_account_number %><br />
+      <%= text_field_tag :destination_user_account_name %>
+    </div>
+
+    <div class="field">
+      <%= label_tag :enter_amount %><br />
+      <%= text_field_tag :amount %>
+    </div>
+    <br />
+    <div class="field">
+      <%= submit_tag :transfer %>
+    </div>
+<% end %>
