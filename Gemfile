@@ -30,6 +30,7 @@ gem 'cancancan', '1.12.0'
 gem 'jquery-ui-rails', '5.0.5'
 gem 'activeadmin', '~> 1.0.0.pre4'
 gem 'devise', '~> 4.1'
+gem 'active_admin_flat_skin'
 
 
 # Use ActiveModel has_secure_password

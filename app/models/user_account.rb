@@ -24,12 +24,27 @@ class UserAccount < ActiveRecord::Base
   end
 
   def balance
+    add_zero_balance if self.account_balance.nil?
     self.account_balance.balance.try(:to_i).presence || 0
   end
 
-  def update_balance(amount)
-    self.account_balance.balance = self.balance + amount
-    save
+  def add_zero_balance
+    self.account_balance = AccountBalance.create(balance: 0)
+    save!
+  end
+
+  def update_balance(amount, action)
+    p "updating balance for #{amount}"
+    final_amount = 0
+    case action
+      when :credit
+        final_amount = self.balance + amount
+      when :debit
+        final_amount = self.balance - amount
+    end
+    self.account_balance.balance = final_amount
+    self.account_balance.save!
+    save!
   end
 
   def find_for_database_authentication warden_conditions

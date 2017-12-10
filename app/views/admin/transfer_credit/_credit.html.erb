@@ -1,0 +1,15 @@
+<%= form_tag admin_transfer_credit_path, {method: :post} do %>
+    <div class="field">
+      <%= label_tag :destination_account_number %><br />
+      <%= text_field_tag :destination_user_account_name %>
+    </div>
+
+    <div class="field">
+      <%= label_tag :enter_amount %><br />
+      <%= text_field_tag :amount %>
+    </div>
+    <br />
+    <div class="field">
+      <%= submit_tag :credit %>
+    </div>
+<% end %>

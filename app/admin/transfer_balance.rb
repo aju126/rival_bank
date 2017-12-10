@@ -11,8 +11,13 @@ ActiveAdmin.register_page 'Transfer Balance' do
     include Transfer
 
     def transfer
-      valid_balance?(current_user_account, params[:amount])
-      raise account_exists?(params[:destination_user_account_name]).inspect
+      UserAccount.transaction do
+        amount = params[:amount]
+        destination_account = account(params[:destination_user_account_name])
+        transfer_balance(current_user_account, destination_account, amount)
+        return redirect_to '/admin'
+      end
+      render :transfer
     end
   end
 end
