@@ -5,6 +5,11 @@ class UserAccount < ActiveRecord::Base
          :recoverable, :rememberable, :trackable,
          :validatable, :authentication_keys => [:user_name]
 
+  def ability
+    @ability ||= Ability.new(self)
+  end
+  delegate :can?, :cannot?, to: :ability
+
   #Associations
 
   belongs_to :user_information
@@ -45,6 +50,18 @@ class UserAccount < ActiveRecord::Base
     self.account_balance.balance = final_amount
     self.account_balance.save!
     save!
+  end
+
+  def admin?
+    roles.include?(Role.admin)
+  end
+
+  def manager?
+    roles.include?(Role.manager)
+  end
+
+  def account_holder?
+    roles.include?(Role.account_holder)
   end
 
   def find_for_database_authentication warden_conditions

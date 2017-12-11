@@ -1,0 +1,20 @@
+<%= form_tag admin_interest_calculator_path, {method: :post} do %>
+    <div class="field">
+      <%= label_tag :principal_amount %><br />
+      <%= text_field_tag :principal_amount %>
+    </div>
+
+    <div class="field">
+      <%= label_tag :interest_rate %><br />
+      <%= text_field_tag :interest_rate %>
+    </div>
+
+    <div class="field">
+      <%= label_tag :duration_in_months %><br />
+      <%= text_field_tag :duration %>
+    </div>
+    <br />
+    <div class="field">
+      <%= submit_tag :calculate %>
+    </div>
+<% end %>

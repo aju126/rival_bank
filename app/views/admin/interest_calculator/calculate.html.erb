@@ -1,0 +1,18 @@
+<div class="field">
+  <%= label_tag :principal_amount %><br />
+  <%= text_field_tag :principal_amount, @principal, disabled: true %>
+</div>
+
+<div class="field">
+  <%= label_tag :interest_rate %><br />
+  <%= text_field_tag :interest_rate, @interest, disabled: true %>
+</div>
+
+<div class="field">
+  <%= label_tag :duration_in_months %><br />
+  <%= text_field_tag :duration, @duration, disabled: true %>
+</div>
+<br />
+<div class="field">
+  <%= label_tag :total_amount, "Total : #{@total}" %><br />
+</div>

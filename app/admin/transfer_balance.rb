@@ -1,23 +1,27 @@
 ActiveAdmin.register_page 'Transfer Balance' do
 
   menu parent: 'Operations'
+
   content do
     panel '' do
-      render 'transfer'
+      render 'transfer_balance'
     end
   end
 
   controller do
     include Transfer
 
+    def transfer_balance
+      raise self.inspect
+    end
+
     def transfer
-      UserAccount.transaction do
-        amount = params[:amount]
-        destination_account = account(params[:destination_user_account_name])
-        transfer_balance(current_user_account, destination_account, amount)
-        return redirect_to '/admin'
-      end
-      render :transfer
+      amount = params[:amount]
+      destination_account = params[:destination_user_account_name]
+      value = transfer_bal(current_user_account, destination_account, amount)
+      return redirect_to '/admin' if value == true
+      @error = flash[:error]
+      return redirect_to '/admin/transfer_balance'#, alert: flash[:error]
     end
   end
 end
