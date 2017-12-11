@@ -12,6 +12,29 @@ ActiveAdmin.register_page "Dashboard" do
           end
         end
       end
+
+      column do
+        panel "Personal Details" do
+          div do
+            para "Account Number: #{ current_user_account.account_number }"
+          end
+          div do
+            para "User Name: #{ current_user_account.user_name }"
+          end
+          div do
+            para "Name: #{ current_user_account.user_information.name }"
+          end
+          div do
+            para "Phone: #{ current_user_account.user_information.phone }"
+          end
+          div do
+            para "Email: #{ current_user_account.user_information.email }"
+          end
+        end
+      end
+    end # columns
+
+    columns do
       column do
         panel "Recent Transactions" do
           table_for Transaction.mine(current_user_account).order("id desc").limit(10) do
@@ -21,15 +44,7 @@ ActiveAdmin.register_page "Dashboard" do
           end
         end
       end
-
-      # column do
-      #   panel "Recent Customers" do
-      #     table_for User.order("id desc").limit(10).each do |_user|
-      #       column(:email)    { |user| link_to(user.email, admin_user_path(user)) }
-      #     end
-      #   end
-      # end
-    end # columns
+    end
 
     # Here is an example of a simple dashboard with columns and panels.
     #
