@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  #devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :user_accounts
   root to: redirect('/admin/user_accounts')
