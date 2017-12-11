@@ -10,7 +10,7 @@ ActiveAdmin.register_page 'Interest Calculator' do
 
   controller do
 
-    include Calculator
+    include Calc
 
     def calculate
       @principal = params[:principal_amount]

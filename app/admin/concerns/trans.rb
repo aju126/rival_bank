@@ -1,4 +1,4 @@
-module Transfer
+module Trans
   extend ActiveSupport::Concern
 
   def valid_balance?(account, amount)

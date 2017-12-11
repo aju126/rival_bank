@@ -1,4 +1,4 @@
-module Calculator
+module Calc
   extend ActiveSupport::Concern
 
   # Returns computed value using the equation A = P( 1 + r/n)pow nt

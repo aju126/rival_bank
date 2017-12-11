@@ -8,7 +8,7 @@ ActiveAdmin.register_page 'Transfer Credit' do
   end
 
   controller do
-    include Transfer
+    include Trans
 
     def credit
       destination_account = account(params[:destination_user_account_name])

@@ -9,7 +9,7 @@ ActiveAdmin.register_page 'Transfer Balance' do
   end
 
   controller do
-    include Transfer
+    include Trans
 
     def transfer_balance
       raise self.inspect
