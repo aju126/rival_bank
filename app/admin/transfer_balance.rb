@@ -1,3 +1,5 @@
+require 'admin/concerns/trans.rb'
+
 ActiveAdmin.register_page 'Transfer Balance' do
 
   menu parent: 'Operations'

@@ -1,3 +1,5 @@
+require 'admin/concerns/calc.rb'
+
 ActiveAdmin.register_page 'Interest Calculator' do
 
   menu parent: 'Operations'

@@ -1,3 +1,5 @@
+require 'admin/concerns/trans.rb'
+
 ActiveAdmin.register_page 'Transfer Credit' do
 
   menu parent: 'Operations'
