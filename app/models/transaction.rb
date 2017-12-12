@@ -10,6 +10,6 @@ class Transaction < ActiveRecord::Base
   # end
 
   def destination_account
-    self.action.name == :credit ? self.destination_user_account.user_name : self.source_user_account.user_name
+    self.action.name == 'Credit' ? self.destination_user_account.user_name : self.source_user_account.user_name
   end
 end
