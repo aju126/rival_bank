@@ -1,4 +1,3 @@
-require 'admin/concerns/trans.rb'
 
 ActiveAdmin.register_page 'Transfer Balance' do
 
@@ -20,9 +19,9 @@ ActiveAdmin.register_page 'Transfer Balance' do
     def transfer
       amount = params[:amount]
       destination_account = params[:destination_user_account_name]
-      value = transfer_bal(current_user_account, destination_account, amount)
-      return redirect_to '/admin' if value == true
-      @error = flash[:error]
+      # value = transfer_bal(current_user_account, destination_account, amount)
+      # return redirect_to '/admin' if value == true
+      # @error = flash[:error]
       return redirect_to '/admin/transfer_balance'#, alert: flash[:error]
     end
   end
