@@ -11,5 +11,7 @@ class Transaction < ActiveRecord::Base
 
   def destination_account
     self.action.name == 'Credit' ? self.destination_user_account.user_name : self.source_user_account.user_name
+  rescue
+    nil
   end
 end
