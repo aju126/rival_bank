@@ -10,9 +10,6 @@ ActiveAdmin.register_page 'Interest Calculator' do
   end
 
   controller do
-
-   include Calc
-
     def calculate
       @principal = params[:principal_amount]
       @interest = params[:interest_rate]
@@ -22,5 +19,11 @@ ActiveAdmin.register_page 'Interest Calculator' do
       @total = calculate_interest(@principal.to_i, @interest.to_i, @duration.to_i, payout)
       render :calculate
     end
+
+     def calculate_interest(p, r, t, n)
+       t = t > 12 ? t/12 : 1
+       x = (1 + (r.to_f/100)/ n)
+       p * (x**(n*t))
+     end
   end
 end
