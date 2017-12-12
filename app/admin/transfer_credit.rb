@@ -18,7 +18,7 @@ ActiveAdmin.register_page 'Transfer Credit' do
           destination_account.update_balance(amount.to_i, :credit)
           transact = Transaction.new(
             amount: amount.to_i,
-            action_id: Action.find_by_name('credit').id
+            action_id: Action.find_by_name('Credit').id
           )
           transact.source_user_account_id = current_user_account.id
           transact.destination_user_account_id = destination_account.id
