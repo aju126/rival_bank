@@ -38,7 +38,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Recent Transactions" do
           table_for Transaction.mine(current_user_account).order("id desc").limit(10) do
-            column("Action") { |order| status_tag(order.action.name) }
+            column("Action") { |order| status_tag(order.action.try(:name)) }
             column("From") { |order| order.destination_account }
             column("Total")   { |order| order.amount }
           end

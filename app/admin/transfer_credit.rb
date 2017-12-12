@@ -30,7 +30,7 @@ ActiveAdmin.register_page 'Transfer Credit' do
 
     def account(acc)
       account = UserAccount.find_by_account_number(acc)
-      raise 'Destination Account not found!' if account.nil?
+      #raise 'Destination Account not found!' if account.nil?
       account
     end
   end
