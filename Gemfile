@@ -28,9 +28,10 @@ gem 'mysql2', '0.4.8'
 gem 'activeadmin_addons', '1.0.0'
 gem 'cancancan', '1.12.0'
 gem 'jquery-ui-rails', '5.0.5'
-gem 'activeadmin', '~> 1.0.0.pre4'
+gem 'activeadmin', '~> 1.2'
 gem 'devise', '~> 4.1'
 gem 'active_admin_flat_skin'
+gem 'dalli'
 
 
 # Use ActiveModel has_secure_password
@@ -53,5 +54,7 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem 'faker'
 end
 

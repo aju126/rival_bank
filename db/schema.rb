@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 20171209104234) do
   add_index "transactions", ["source_user_account_id"], name: "index_transactions_on_source_user_account_id", using: :btree
 
   create_table "user_accounts", force: :cascade do |t|
-    t.integer  "account_number",         limit: 4
+    t.integer  "account_number",         limit: 8
     t.string   "user_name",              limit: 255
     t.integer  "user_information_id",    limit: 4
     t.integer  "account_interest_id",    limit: 4
