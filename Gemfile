@@ -24,14 +24,15 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'paper_trail', '3.0.7'
 gem 'turbolinks', '2.5.3'
 gem 'rails-erd'
-gem 'activeadmin', '~> 1.0.0.pre4'
 gem 'pg'
 gem 'activeadmin_addons', '1.0.0'
 gem 'cancancan', '1.12.0'
 gem 'jquery-ui-rails', '5.0.5'
+gem 'rails_12factor', group: :production
+gem 'activeadmin', '~> 1.2'
 gem 'devise', '~> 4.1'
 gem 'active_admin_flat_skin'
-gem 'rails_12factor', group: :production
+gem 'dalli'
 
 
 # Use ActiveModel has_secure_password
@@ -54,5 +55,7 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem 'faker'
 end
 

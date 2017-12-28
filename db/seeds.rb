@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+require 'faker'
+
 role_admin = Role.find_or_create_by(name: Role::ROLE_ADMIN)
 role_manager = Role.find_or_create_by(name: Role::ROLE_MANAGER)
 role_staff = Role.find_or_create_by(name: Role::ROLE_STAFF)
@@ -27,6 +29,7 @@ end
                          email: 'aju.126@gmail.com'
   )
   balance = AccountBalance.create(balance: 4500)
+  balance_account = AccountBalance.create(balance: 8000)
 
   UserAccount.create!(account_number: '123456',
                       user_name: 'aj',
@@ -35,3 +38,21 @@ end
                       roles: [role_admin],
                       account_balance: balance
   )
+
+
+5000.times.each do
+
+  name = Faker::Name.name
+  uinfo = UserInformation.create(name: name,
+                              phone: Faker::PhoneNumber.cell_phone,
+                              address: Faker::Address.street_address,
+                              email: Faker::Internet.free_email(name)
+  )
+  UserAccount.create!(account_number: Faker::Code.ean,
+                      user_name: Faker::Internet.user_name(name),
+                      password: '123456',
+                      user_information: uinfo,
+                      roles: [role_account],
+                      account_balance: balance_account
+  )
+end

@@ -1,6 +1,8 @@
 ActiveAdmin.register UserAccount do
   menu if: proc { current_user_account.admin? }
 
+  config.per_page = 100
+
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -44,7 +46,7 @@ ActiveAdmin.register UserAccount do
     f.actions
   end
 
-  index do
+  index  do
     selectable_column
     column :account_number
     column :user_name
@@ -88,6 +90,15 @@ ActiveAdmin.register UserAccount do
       row :created_at
       row :updated_at
     end
+  end
+
+  controller do
+
+
+    def scoped_collection
+      UserAccount.includes(:user_information).includes(:account_balance)
+    end
+
   end
 
 end

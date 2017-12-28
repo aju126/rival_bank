@@ -5,6 +5,10 @@ class UserAccount < ActiveRecord::Base
          :recoverable, :rememberable, :trackable,
          :validatable, :authentication_keys => [:user_name]
 
+  after_save :expire
+  after_update :expire
+
+
   def ability
     @ability ||= Ability.new(self)
   end
@@ -19,6 +23,27 @@ class UserAccount < ActiveRecord::Base
   has_many :source_accounts, class_name: 'Transaction', foreign_key: 'source_user_account_id'
   has_many :destination_accounts, class_name: 'Transaction', foreign_key: 'destination_user_account_id'
   has_and_belongs_to_many :roles, join_table: 'users_roles'
+
+  scope :total_accounts, -> {
+    Rails.cache.fetch(:total_accounts) {
+      self.all.count
+    }
+  }
+
+  scope :total_money, -> {
+    Rails.cache.fetch(:total_money) {
+      self.all.includes(:account_balance).inject(0){ |val, account| val + (account.account_balance.try(:balance).presence || 0)}
+    }
+  }
+
+  def expire
+    UserAccount.expire_memcache(:total_money)
+    UserAccount.expire_memcache(:total_accounts)
+  end
+
+  def self.expire_memcache(key)
+    Rails.cache.delete(key)
+  end
 
   def email_required?
     false
