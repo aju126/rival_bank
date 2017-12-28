@@ -6,8 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-require 'faker'
-
 role_admin = Role.find_or_create_by(name: Role::ROLE_ADMIN)
 role_manager = Role.find_or_create_by(name: Role::ROLE_MANAGER)
 role_staff = Role.find_or_create_by(name: Role::ROLE_STAFF)
